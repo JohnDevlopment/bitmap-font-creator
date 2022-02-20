@@ -1,0 +1,78 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/bitmap_font_creator/CharMapping.gd" type="Script" id=1]
+[ext_resource path="res://addons/bitmap_font_creator/trash-icon.png" type="Texture" id=2]
+
+[node name="CharMapping" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 142, 44 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="."]
+margin_right = 640.0
+margin_bottom = 42.0
+custom_constants/hseparation = 15
+columns = 4
+
+[node name="CharLabel" type="Label" parent="GridContainer"]
+margin_right = 60.0
+margin_bottom = 14.0
+text = "Character"
+
+[node name="IndexLabel" type="Label" parent="GridContainer"]
+margin_left = 75.0
+margin_right = 149.0
+margin_bottom = 14.0
+text = "Index"
+
+[node name="IndexLabel2" type="Label" parent="GridContainer"]
+margin_left = 164.0
+margin_right = 238.0
+margin_bottom = 14.0
+text = "Texture"
+
+[node name="Spacer" type="Control" parent="GridContainer"]
+margin_left = 253.0
+margin_right = 281.0
+margin_bottom = 14.0
+
+[node name="Character" type="LineEdit" parent="GridContainer"]
+margin_top = 18.0
+margin_right = 60.0
+margin_bottom = 42.0
+max_length = 1
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+placeholder_text = "A"
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="Index" type="SpinBox" parent="GridContainer"]
+margin_left = 75.0
+margin_top = 18.0
+margin_right = 149.0
+margin_bottom = 42.0
+allow_greater = true
+
+[node name="TextureID" type="SpinBox" parent="GridContainer"]
+margin_left = 164.0
+margin_top = 18.0
+margin_right = 238.0
+margin_bottom = 42.0
+
+[node name="TrashButton" type="Button" parent="GridContainer"]
+margin_left = 253.0
+margin_top = 18.0
+margin_right = 281.0
+margin_bottom = 42.0
+icon = ExtResource( 2 )
+
+[connection signal="text_changed" from="GridContainer/Character" to="." method="_on_Character_text_changed"]
+[connection signal="value_changed" from="GridContainer/Index" to="." method="_on_Index_value_changed"]
+[connection signal="value_changed" from="GridContainer/TextureID" to="." method="_on_Texture_value_changed"]
+[connection signal="pressed" from="GridContainer/TrashButton" to="." method="_on_TrashButton_pressed"]

@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/bitmap_font_creator/TextureBlock.gd" type="Script" id=1]
+[ext_resource path="res://addons/bitmap_font_creator/trash-icon.png" type="Texture" id=2]
+
+[node name="Texture" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+visible = false
+margin_right = 640.0
+margin_bottom = 24.0
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer"]
+margin_right = 565.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="BrowseButton" type="Button" parent="HBoxContainer"]
+margin_left = 569.0
+margin_right = 640.0
+margin_bottom = 24.0
+text = "Browse..."
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 640.0
+size_flags_horizontal = 3
+
+[node name="Actions" type="HBoxContainer" parent="."]
+margin_top = 4.0
+margin_right = 640.0
+margin_bottom = 28.0
+
+[node name="HFramesLabel" type="Label" parent="Actions"]
+margin_top = 5.0
+margin_right = 57.0
+margin_bottom = 19.0
+text = "HFrames"
+
+[node name="HFrames" type="SpinBox" parent="Actions"]
+margin_left = 61.0
+margin_right = 135.0
+margin_bottom = 24.0
+min_value = 1.0
+value = 1.0
+
+[node name="VFramesLabel" type="Label" parent="Actions"]
+margin_left = 139.0
+margin_top = 5.0
+margin_right = 194.0
+margin_bottom = 19.0
+text = "VFrames"
+
+[node name="VFrames" type="SpinBox" parent="Actions"]
+margin_left = 198.0
+margin_right = 272.0
+margin_bottom = 24.0
+min_value = 1.0
+value = 1.0
+
+[node name="TrashButton" type="Button" parent="Actions"]
+margin_left = 276.0
+margin_right = 304.0
+margin_bottom = 24.0
+icon = ExtResource( 2 )
+
+[connection signal="value_changed" from="Actions/HFrames" to="." method="_on_HFrames_value_changed"]
+[connection signal="value_changed" from="Actions/VFrames" to="." method="_on_VFrames_value_changed"]
+[connection signal="pressed" from="Actions/TrashButton" to="." method="_on_TrashButton_pressed"]

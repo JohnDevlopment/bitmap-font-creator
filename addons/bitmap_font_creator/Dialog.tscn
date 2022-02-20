@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/bitmap_font_creator/CharacterMappings.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/bitmap_font_creator/Dialog.gd" type="Script" id=2]
+[ext_resource path="res://addons/bitmap_font_creator/Textures.tscn" type="PackedScene" id=3]
+
+[node name="Dialog" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 20.0
+margin_right = -10.0
+margin_bottom = -10.0
+rect_min_size = Vector2( 0, 270 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Tabs" type="TabContainer" parent="."]
+margin_right = 620.0
+margin_bottom = 450.0
+size_flags_vertical = 3
+tab_align = 0
+
+[node name="Character Mappings" parent="Tabs" instance=ExtResource( 1 )]
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Textures" parent="Tabs" instance=ExtResource( 3 )]
+visible = false
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[connection signal="mapping_added" from="Tabs/Character Mappings" to="." method="_on_Character_Mappings_mapping_added"]
+[connection signal="texture_count_changed" from="Tabs/Textures" to="." method="_on_Textures_texture_count_changed"]
