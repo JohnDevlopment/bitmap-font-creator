@@ -19,10 +19,13 @@ func _exit_tree() -> void:
 	_show_button = null
 
 func apply_changes() -> void:
-	_dialog.apply()
+	if is_instance_valid(_dialog) and (_dialog as Control).is_visible_in_tree():
+		print('apply_changes')
+		_dialog.apply()
 
 func clear() -> void:
-	_dialog._clear_state()
+	print('clear')
+	_dialog.clear_state()
 
 func edit(object: Object) -> void:
 	if is_instance_valid(_dialog):
@@ -52,5 +55,6 @@ func make_visible(visible: bool) -> void:
 			hide_bottom_panel()
 
 func save_external_data() -> void:
-	if is_instance_valid(_dialog):
+	if is_instance_valid(_dialog) and (_dialog as Control).is_visible_in_tree():
+		print('save_external_data')
 		_dialog.save()

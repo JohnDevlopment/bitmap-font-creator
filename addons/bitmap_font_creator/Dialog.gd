@@ -12,7 +12,8 @@ func _init_font(font: Object):
 	set_meta_default(font, 'hframes', {})
 
 func apply() -> void:
-	pass
+	print('apply in Dialog')
+	save()
 
 func edit(font: BitmapFont) -> void:
 	clear_state()
@@ -29,7 +30,8 @@ func save() -> void:
 		(edited_font as BitmapFont).clear()
 		$Tabs/Textures.save(edited_font)
 		$'Tabs/Character Mappings'.save(edited_font)
-		(edited_font as BitmapFont).emit_changed()
+		if not edited_font_path.empty():
+			ResourceSaver.save(edited_font_path, edited_font)
 
 func set_meta_default(object: Object, meta: String, value) -> void:
 	if not object.has_meta(meta):
@@ -42,6 +44,9 @@ func clear_state() -> void:
 #			(edited_font as Resource).disconnect('changed', self, '_on_resource_changed')
 	$Tabs/Textures._clear_state()
 	$'Tabs/Character Mappings'._clear_state()
+	edited_font = null
+	edited_font_path = ''
+	texture_count = 0
 
 func _on_Textures_texture_count_changed(new_count: int) -> void:
 	texture_count = new_count

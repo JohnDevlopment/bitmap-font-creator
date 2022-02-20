@@ -1,11 +1,10 @@
 tool
 extends VBoxContainer
 
-signal property_changed(property, new_value)
+signal property_changed(index, property, new_value)
 
 var vframes := 1 setget set_vframes
 var hframes := 1 setget set_hframes
-var edited_font
 
 func _on_TrashButton_pressed() -> void:
 	queue_free()
@@ -39,6 +38,8 @@ func set_vframes(value: int):
 
 func _on_HFrames_value_changed(value: float) -> void:
 	hframes = value
+	emit_signal('property_changed', get_index(), 'hframes', value)
 
 func _on_VFrames_value_changed(value: float) -> void:
 	vframes = value
+	emit_signal('property_changed', get_index(), 'vframes', value)
