@@ -21,6 +21,7 @@ func edit(font: BitmapFont, _undo_redo: UndoRedo) -> void:
 		emit_signal('mapping_added', node)
 		node.character = ch
 		node.index = mappings[ch].index
+		node.texture = mappings[ch].texture
 
 func save(font: BitmapFont) -> void:
 	var mappings_grid = $VBoxContainer/MappingsGrid
@@ -44,8 +45,8 @@ func _add_char_to_font(font: BitmapFont, ch: String, index: int, texture: int) -
 	var cell_size := _get_cell_size(font)
 	var hframes : int = font.get_meta('hframes')[texture]
 	var position := Vector2(index % hframes, index / hframes) * cell_size
-	print("Texture %d, index %d <%s>" % [texture, index, position])
-	font.add_char(ord(ch), 0, Rect2(position, cell_size))
+	#print("Texture %d, index %d <%s>" % [texture, index, position])
+	font.add_char(ord(ch), texture, Rect2(position, cell_size))
 
 func _get_cell_size(font: BitmapFont) -> Vector2:
 	var vframes = font.get_meta('vframes')[0]
