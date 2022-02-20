@@ -5,12 +5,15 @@ signal mapping_added(node)
 
 const CharMapping = preload('res://addons/bitmap_font_creator/CharMapping.tscn')
 
+var undo_redo : UndoRedo
+
 func _on_AddMappingButton_pressed() -> void:
 	var node = CharMapping.instance()
 	$VBoxContainer/MappingsGrid.add_child(node)
 	emit_signal('mapping_added', node)
 
-func edit(font: BitmapFont) -> void:
+func edit(font: BitmapFont, _undo_redo: UndoRedo) -> void:
+	undo_redo = _undo_redo
 	var mappings : Dictionary = font.get_meta('char_mappings')
 	for ch in mappings:
 		var node = CharMapping.instance()

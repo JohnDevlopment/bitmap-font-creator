@@ -8,15 +8,18 @@ const TextureBlock = preload('res://addons/bitmap_font_creator/TextureBlock.tscn
 onready var OpenFileDialog: FileDialog = get_node("OpenFileDialog")
 onready var TexturesGrid: GridContainer = get_node("ScrollContainer/VBoxContainer/TexturesGrid")
 var edited_font
+var undo_redo : UndoRedo
 
 func _on_AddTextureButton_pressed() -> void:
 	OpenFileDialog.popup_centered()
 	OpenFileDialog.grab_focus()
 
 func _add_texture(tex):
+	# Add node to scene tree
 	var node = TextureBlock.instance()
 	TexturesGrid.add_child(node)
-	node.edited_font = edited_font
+	node.connect('property_changed', self, '_on_texture_property_changed')
+	
 	if tex is String:
 		if node.load_texture(tex):
 			push_error("Unable to load '%s'" % tex)
@@ -37,8 +40,22 @@ func _clear_state() -> void:
 	for node in TexturesGrid.get_children():
 		(node as Node).queue_free()
 
-func edit(font: BitmapFont) -> void:
+func _on_texture_property_changed(index: int, property: String, new_value):
+	match property:
+		'vframes':
+			var vframes : Dictionary = edited_font.get_meta('vframes')
+			vframes[index] = new_value
+			(edited_font as BitmapFont).set_meta('vframes', vframes)
+			(edited_font as BitmapFont).emit_changed()
+		'hframes':
+			var hframes : Dictionary = edited_font.get_meta('hframes')
+			hframes[index] = new_value
+			(edited_font as BitmapFont).set_meta('hframes', hframes)
+			(edited_font as BitmapFont).emit_changed()
+
+func edit(font: BitmapFont, _undo_redo: UndoRedo) -> void:
 	edited_font = font
+	undo_redo = _undo_redo
 	var vframes : Dictionary = font.get_meta('vframes')
 	var hframes : Dictionary = font.get_meta('hframes')
 	for i in font.get_texture_count():

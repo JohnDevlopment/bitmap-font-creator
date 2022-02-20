@@ -8,6 +8,7 @@ var _show_button
 
 func _enter_tree() -> void:
 	_dialog = Window.instance()
+	_dialog.undo_redo = get_undo_redo()
 	_show_button = add_control_to_bottom_panel(_dialog, 'Bitmap Font')
 	_show_button.hide()
 
@@ -19,6 +20,9 @@ func _exit_tree() -> void:
 
 func apply_changes() -> void:
 	_dialog.apply()
+
+func clear() -> void:
+	_dialog._clear_state()
 
 func edit(object: Object) -> void:
 	if is_instance_valid(_dialog):
