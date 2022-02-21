@@ -1,0 +1,16 @@
+[gd_resource type="BitmapFont" load_steps=2 format=2]
+
+[ext_resource path="res://font.png" type="Texture" id=1]
+
+[resource]
+textures = [ ExtResource( 1 ) ]
+__meta__ = {
+"char_mappings": {
+},
+"hframes": {
+0: 8
+},
+"vframes": {
+0: 1
+}
+}

@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
-[ext_resource path="res://test-font.tres" type="BitmapFont" id=2]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -22,8 +21,6 @@ margin_left = 330.0
 margin_top = 234.0
 margin_right = 370.0
 margin_bottom = 248.0
-custom_fonts/font = ExtResource( 2 )
-text = "ABCDEFG"
 __meta__ = {
 "_edit_use_anchors_": false
 }
