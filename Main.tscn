@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://addons/bitmap_font_creator/Vector2.tscn" type="PackedScene" id=2]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -11,18 +12,59 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="."]
-margin_right = 12.0
-margin_bottom = 20.0
-text = "Click Me!"
-
-[node name="Label" type="Label" parent="."]
-margin_left = 330.0
-margin_top = 234.0
-margin_right = 370.0
-margin_bottom = 248.0
+[node name="Margin" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 46.0
+margin_top = 38.0
+margin_right = -59.0
+margin_bottom = -55.0
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_lock_": true,
+"_edit_use_anchors_": true
 }
 
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[node name="Rows" type="VBoxContainer" parent="Margin"]
+margin_right = 919.0
+margin_bottom = 507.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/Rows"]
+margin_left = 422.0
+margin_right = 496.0
+margin_bottom = 24.0
+size_flags_horizontal = 4
+
+[node name="V" type="SpinBox" parent="Margin/Rows/HBoxContainer"]
+margin_right = 74.0
+margin_bottom = 24.0
+size_flags_horizontal = 4
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Margin/Rows"]
+margin_left = 422.0
+margin_top = 28.0
+margin_right = 496.0
+margin_bottom = 52.0
+size_flags_horizontal = 4
+
+[node name="H" type="SpinBox" parent="Margin/Rows/HBoxContainer2"]
+margin_right = 74.0
+margin_bottom = 24.0
+size_flags_horizontal = 4
+
+[node name="VectorControl" parent="Margin/Rows" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 422.0
+margin_top = 56.0
+margin_right = 496.0
+margin_bottom = 108.0
+size_flags_horizontal = 4
+
+[node name="VectorLabel" type="Label" parent="Margin/Rows"]
+margin_top = 112.0
+margin_right = 919.0
+margin_bottom = 126.0
+text = "555"
+align = 1
+
+[connection signal="value_changed" from="Margin/Rows/VectorControl" to="." method="_on_Vector2_value_changed"]

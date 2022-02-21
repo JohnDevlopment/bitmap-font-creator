@@ -1,4 +1,13 @@
 extends Control
 
-func _on_Button_pressed() -> void:
-	print('hello world!')
+var VectorControl : Control
+var VectorLabel : Label
+var V : SpinBox
+var H : SpinBox
+
+func _ready() -> void:
+	NodeMapper.map_nodes(self)
+	VectorLabel.text = str(Vector2.ZERO)
+
+func _on_Vector2_value_changed(new_value: Vector2) -> void:
+	VectorLabel.text = str(new_value)
