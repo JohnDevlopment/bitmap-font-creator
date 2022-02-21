@@ -9,11 +9,12 @@ anchor_bottom = 1.0
 rect_min_size = Vector2( 142, 44 )
 script = ExtResource( 1 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="GridContainer" type="GridContainer" parent="."]
-margin_right = 640.0
+margin_right = 1024.0
 margin_bottom = 42.0
 custom_constants/hseparation = 15
 columns = 4
