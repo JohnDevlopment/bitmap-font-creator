@@ -18,6 +18,10 @@ config/icon="res://icon.png"
 
 NodeMapper="*res://addons/node_mapper/NodeMapper.gd"
 
+[debug]
+
+gdscript/warnings/return_value_discarded=false
+
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/bitmap_font_creator/plugin.cfg", "res://addons/godot-plugin-refresher/plugin.cfg", "res://addons/node_mapper/plugin.cfg" )
