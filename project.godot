@@ -14,9 +14,13 @@ config/name="Bitmap Font Creator Plugin"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+NodeMapper="*res://addons/node_mapper/NodeMapper.gd"
+
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/bitmap_font_creator/plugin.cfg", "res://addons/godot-plugin-refresher/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/bitmap_font_creator/plugin.cfg", "res://addons/godot-plugin-refresher/plugin.cfg", "res://addons/node_mapper/plugin.cfg" )
 
 [importer_defaults]
 
