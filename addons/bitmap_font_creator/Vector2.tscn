@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/bitmap_font_creator/Vector2.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 4.0
+bg_color = Color( 0.0980392, 0.113725, 0.156863, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0980392, 0.113725, 0.156863, 1 )
+expand_margin_right = 4.0
+expand_margin_top = 4.0
+expand_margin_bottom = 4.0
+
+[node name="Vector2" type="GridContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+columns = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="XLabel" type="Label" parent="."]
+light_mask = 0
+margin_top = 4.0
+margin_right = 12.0
+margin_bottom = 20.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_styles/normal = SubResource( 1 )
+text = "x"
+
+[node name="X" type="LineEdit" parent="."]
+light_mask = 0
+margin_left = 16.0
+margin_right = 74.0
+margin_bottom = 24.0
+text = "0"
+
+[node name="YLabel" type="Label" parent="."]
+light_mask = 0
+margin_top = 32.0
+margin_right = 12.0
+margin_bottom = 48.0
+custom_colors/font_color = Color( 0, 1, 0.0627451, 1 )
+custom_styles/normal = SubResource( 1 )
+text = "y"
+
+[node name="Y" type="LineEdit" parent="."]
+margin_left = 16.0
+margin_top = 28.0
+margin_right = 74.0
+margin_bottom = 52.0
+text = "0"
+
+[connection signal="focus_exited" from="X" to="." method="_on_focus_exited" binds= [ "x" ]]
+[connection signal="text_entered" from="X" to="." method="_vector_changed" binds= [ "x" ]]
+[connection signal="focus_exited" from="Y" to="." method="_on_focus_exited" binds= [ "y" ]]
+[connection signal="text_entered" from="Y" to="." method="_vector_changed" binds= [ "y" ]]
