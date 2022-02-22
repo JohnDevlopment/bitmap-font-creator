@@ -2,15 +2,15 @@
 * text=auto eol=lf
 
 # Ignore some files when exporting to a ZIP.
-/.gitattributes                     export-ignore
-/.gitignore                         export-ignore
-/LICENSE                            export-ignore
-/README.md                          export-ignore
-/project.godot                      export-ignore
-/icon.png                           export-ignore
-/icon.svg                           export-ignore
+/.gitattributes                 export-ignore
+/.gitignore                     export-ignore
+/LICENSE                        export-ignore
+/README.md                      export-ignore
+/project.godot                  export-ignore
+/icon.png                       export-ignore
 
 # Ignore other plugins
-/addons/godot-plugin-refresher/*    export-ignore
-/addons/node_mapper/*               export-ignore
-/addons/Todo_Manager/*              export-ignore
+/addons/godot-plugin-refresher  export-ignore
+/addons/node_mapper             export-ignore
+/addons/Todo_Manager            export-ignore
+/addons/snippets_plugin         export-ignore
