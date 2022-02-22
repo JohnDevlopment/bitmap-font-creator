@@ -9,6 +9,7 @@ onready var OpenFileDialog: FileDialog = get_node("OpenFileDialog")
 onready var TexturesGrid: GridContainer = get_node("ScrollContainer/VBoxContainer/TexturesGrid")
 var edited_font
 var undo_redo : UndoRedo
+var _no_update := false
 
 func _on_AddTextureButton_pressed() -> void:
 	OpenFileDialog.popup_centered()
@@ -19,6 +20,10 @@ func _add_texture(tex):
 	var node = TextureBlock.instance()
 	TexturesGrid.add_child(node)
 	node.connect('property_changed', self, '_on_texture_property_changed')
+	node.connect('tree_exiting', self, '_on_texture_removed')
+	
+	_no_update = true
+	set_deferred('_no_update', false)
 	
 	if tex is String:
 		if node.load_texture(tex):
@@ -32,6 +37,8 @@ func _add_texture(tex):
 		push_error("Invalid resource '%s', neither a string nor a texture." % tex)
 		node.queue_free()
 		return
+	
+	call_deferred('_update_texture_ids')
 	
 	return node
 
@@ -53,6 +60,14 @@ func _on_texture_property_changed(index: int, property: String, new_value):
 			(edited_font as BitmapFont).set_meta('hframes', hframes)
 			(edited_font as BitmapFont).emit_changed()
 
+func _update_texture_ids() -> void:
+	for node in $ScrollContainer/VBoxContainer/TexturesGrid.get_children():
+		node._update_texture_id()
+
+func _on_texture_removed() -> void:
+	if not _no_update:
+		call_deferred('_update_texture_ids')
+
 func edit(font: BitmapFont, _undo_redo: UndoRedo) -> void:
 	edited_font = font
 	undo_redo = _undo_redo
@@ -65,6 +80,7 @@ func edit(font: BitmapFont, _undo_redo: UndoRedo) -> void:
 			node.vframes = vframes[i]
 		if i in hframes:
 			node.hframes = hframes[i]
+	_update_texture_ids()
 	emit_texture_count_changed()
 
 func emit_texture_count_changed() -> void:

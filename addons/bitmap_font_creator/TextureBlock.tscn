@@ -27,14 +27,22 @@ margin_right = 640.0
 margin_bottom = 24.0
 text = "Browse..."
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="IDLabel" type="Label" parent="."]
 margin_right = 1024.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "ID: 0"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_top = 18.0
+margin_right = 1024.0
+margin_bottom = 18.0
 size_flags_horizontal = 3
 
 [node name="Actions" type="HBoxContainer" parent="."]
-margin_top = 4.0
+margin_top = 22.0
 margin_right = 1024.0
-margin_bottom = 28.0
+margin_bottom = 46.0
 
 [node name="HFramesLabel" type="Label" parent="Actions"]
 margin_top = 5.0

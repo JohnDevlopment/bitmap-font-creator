@@ -43,3 +43,6 @@ func _on_HFrames_value_changed(value: float) -> void:
 func _on_VFrames_value_changed(value: float) -> void:
 	vframes = value
 	emit_signal('property_changed', get_index(), 'vframes', value)
+
+func _update_texture_id() -> void:
+	$IDLabel.text = "ID: %d" % get_index()
