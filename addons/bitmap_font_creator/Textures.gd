@@ -69,7 +69,7 @@ func _update_texture_ids() -> void:
 func _on_texture_removed() -> void:
 	if not _no_update:
 		call_deferred('_update_texture_ids')
-		emit_texture_count_changed()
+		call_deferred('emit_texture_count_changed')
 
 func _debug_print(text: String) -> void:
 	emit_signal('debug_print', text)
