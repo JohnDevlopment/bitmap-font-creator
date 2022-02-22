@@ -24,7 +24,7 @@ gdscript/warnings/return_value_discarded=false
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/bitmap_font_creator/plugin.cfg", "res://addons/godot-plugin-refresher/plugin.cfg", "res://addons/node_mapper/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/Todo_Manager/plugin.cfg", "res://addons/bitmap_font_creator/plugin.cfg", "res://addons/godot-plugin-refresher/plugin.cfg", "res://addons/node_mapper/plugin.cfg" )
 
 [importer_defaults]
 
