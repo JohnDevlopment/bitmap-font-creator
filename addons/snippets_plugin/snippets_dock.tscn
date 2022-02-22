@@ -1,0 +1,210 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://addons/snippets_plugin/snippets_dock.gd" type="Script" id=1]
+[ext_resource path="res://addons/snippets_plugin/icon_filesystem.svg" type="Texture" id=2]
+[ext_resource path="res://addons/snippets_plugin/icon_reload.svg" type="Texture" id=3]
+[ext_resource path="res://addons/snippets_plugin/icon_action_copy.svg" type="Texture" id=4]
+[ext_resource path="res://addons/snippets_plugin/icon_script_create.svg" type="Texture" id=5]
+[ext_resource path="res://addons/snippets_plugin/icon_remove.svg" type="Texture" id=6]
+[ext_resource path="res://addons/snippets_plugin/icon_help.svg" type="Texture" id=7]
+[ext_resource path="res://addons/snippets_plugin/snippet_editor.tscn" type="PackedScene" id=8]
+[ext_resource path="res://addons/snippets_plugin/icon_search.svg" type="Texture" id=9]
+
+[node name="Snippets" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="menu" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="buttons" type="HBoxContainer" parent="menu"]
+margin_right = 1024.0
+margin_bottom = 22.0
+
+[node name="btnFolder" type="Button" parent="menu/buttons"]
+margin_right = 28.0
+margin_bottom = 22.0
+hint_tooltip = "Select Snippets Folder"
+icon = ExtResource( 2 )
+
+[node name="btnRefresh" type="Button" parent="menu/buttons"]
+margin_left = 32.0
+margin_right = 60.0
+margin_bottom = 22.0
+hint_tooltip = "Refresh Snippet List"
+icon = ExtResource( 3 )
+
+[node name="btnClipboard" type="Button" parent="menu/buttons"]
+margin_left = 64.0
+margin_right = 92.0
+margin_bottom = 22.0
+hint_tooltip = "Copy  Selected Snippet To Clipboard "
+icon = ExtResource( 4 )
+
+[node name="btnAddSnippet" type="Button" parent="menu/buttons"]
+margin_left = 96.0
+margin_right = 124.0
+margin_bottom = 22.0
+hint_tooltip = "Copy Clipboard to Snippet"
+icon = ExtResource( 5 )
+
+[node name="btnDelSnippet" type="Button" parent="menu/buttons"]
+margin_left = 128.0
+margin_right = 156.0
+margin_bottom = 22.0
+hint_tooltip = "Delete Selected Snippet"
+icon = ExtResource( 6 )
+
+[node name="btnHelp" type="Button" parent="menu/buttons"]
+margin_left = 160.0
+margin_right = 188.0
+margin_bottom = 22.0
+hint_tooltip = "Snippets Plugin Help"
+icon = ExtResource( 7 )
+
+[node name="search-bar" type="HBoxContainer" parent="menu"]
+margin_top = 26.0
+margin_right = 1024.0
+margin_bottom = 52.0
+
+[node name="search" type="LineEdit" parent="menu/search-bar"]
+margin_right = 1024.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+align = 3
+context_menu_enabled = false
+shortcut_keys_enabled = false
+right_icon = ExtResource( 9 )
+placeholder_text = "search snippets"
+caret_blink = true
+
+[node name="Tree" type="Tree" parent="menu"]
+margin_top = 56.0
+margin_right = 1024.0
+margin_bottom = 582.0
+size_flags_vertical = 3
+columns = 2
+allow_rmb_select = true
+hide_root = true
+
+[node name="SnipMenu" type="PopupMenu" parent="menu/Tree"]
+margin_right = 154.0
+margin_bottom = 52.0
+items = [ "Internal Editor", null, 0, false, false, -1, 0, null, "", false, "External Editor", null, 0, false, false, -1, 0, null, "", false, "Show in File Manager", null, 0, false, false, -1, 0, null, "", false ]
+hide_on_checkable_item_selection = false
+
+[node name="Statusbar" type="Label" parent="menu"]
+margin_top = 586.0
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="FileDialog" type="FileDialog" parent="."]
+margin_right = 275.0
+margin_bottom = 367.0
+size_flags_vertical = 3
+window_title = "Open a Directory"
+resizable = true
+mode = 2
+access = 2
+show_hidden_files = true
+current_dir = "/System/dev/godot/project/research/Godot3/Snippets-EditorPlugin"
+current_path = "/System/dev/godot/project/research/Godot3/Snippets-EditorPlugin/"
+
+[node name="msgTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Help" type="WindowDialog" parent="."]
+use_parent_material = true
+margin_left = 141.0
+margin_top = 114.0
+margin_right = 844.0
+margin_bottom = 463.0
+rect_min_size = Vector2( 100, 100 )
+window_title = "Snippets Plugin Help"
+resizable = true
+
+[node name="Label" type="RichTextLabel" parent="Help"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 700.0
+margin_bottom = 347.0
+mouse_filter = 2
+bbcode_enabled = true
+bbcode_text = "Snippets are small pieces of code you use over and over in your game development lifecycle.
+This plugin allows you to copy and paste them to your current game script editor. it also
+allows you to add new snippets to list by copying code from script editor and pasting as snippet files.
+Snippet files must be saved with .txt extension.
+
+[b]Icons: (Left - Right)[/b]
+Select Snippets Folder - Select the folder your snippets are stored in.
+Refresh Snippets Folder - Refresh Snippets List if files added externally to folder.
+Copy Snippet to Clipboard - Copies selected snippet to clipboard for pasting in script editor.
+Add Snippet to List - Copy clipboard to snippet file. File must have \".txt\" extension.
+Delete Snippet from List - Delete the selected snippet from list and folder.
+Snippet Plugin Help - This file.
+
+[b]Right Mouse Click (Context Menu)[/b]
+Internal Editor - Edit the selected snippet with internal editor.
+External Editor -  Edit the selected snippet with external editor (editor settings).
+Show in File Manager - Open system file manager to snippets folder.
+
+After setting external editor, you must toggle Snippets plugin to inactive, then active.
+
+External Editor is setup in Editor Settings/Text Editor/External
+You only need to change the following fields. Leave \"On\" unchecked.
+Exec Path: C:/Program Files/Notepad++/notepad++.exe
+Exec Flags: {project} --goto {file}:{line}:{col} 
+
+"
+text = "Snippets are small pieces of code you use over and over in your game development lifecycle.
+This plugin allows you to copy and paste them to your current game script editor. it also
+allows you to add new snippets to list by copying code from script editor and pasting as snippet files.
+Snippet files must be saved with .txt extension.
+
+Icons: (Left - Right)
+Select Snippets Folder - Select the folder your snippets are stored in.
+Refresh Snippets Folder - Refresh Snippets List if files added externally to folder.
+Copy Snippet to Clipboard - Copies selected snippet to clipboard for pasting in script editor.
+Add Snippet to List - Copy clipboard to snippet file. File must have \".txt\" extension.
+Delete Snippet from List - Delete the selected snippet from list and folder.
+Snippet Plugin Help - This file.
+
+Right Mouse Click (Context Menu)
+Internal Editor - Edit the selected snippet with internal editor.
+External Editor -  Edit the selected snippet with external editor (editor settings).
+Show in File Manager - Open system file manager to snippets folder.
+
+After setting external editor, you must toggle Snippets plugin to inactive, then active.
+
+External Editor is setup in Editor Settings/Text Editor/External
+You only need to change the following fields. Leave \"On\" unchecked.
+Exec Path: C:/Program Files/Notepad++/notepad++.exe
+Exec Flags: {project} --goto {file}:{line}:{col} 
+
+"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="snippet_editor" parent="." instance=ExtResource( 8 )]
+[connection signal="mouse_entered" from="menu/buttons/btnFolder" to="." method="_on_btnFolder_mouse_entered"]
+[connection signal="pressed" from="menu/buttons/btnFolder" to="." method="_on_btnFolder_pressed"]
+[connection signal="pressed" from="menu/buttons/btnRefresh" to="." method="_on_btnRefresh_pressed"]
+[connection signal="pressed" from="menu/buttons/btnClipboard" to="." method="_on_btnClipboard_pressed"]
+[connection signal="pressed" from="menu/buttons/btnAddSnippet" to="." method="_on_btnAddSnippet_pressed"]
+[connection signal="pressed" from="menu/buttons/btnDelSnippet" to="." method="_on_btnDelSnippet_pressed"]
+[connection signal="pressed" from="menu/buttons/btnHelp" to="." method="_on_btnHelp_pressed"]
+[connection signal="text_changed" from="menu/search-bar/search" to="." method="_on_LineEdit_text_changed"]
+[connection signal="item_activated" from="menu/Tree" to="." method="_on_Tree_item_activated"]
+[connection signal="item_rmb_selected" from="menu/Tree" to="." method="_on_Tree_item_rmb_selected"]
+[connection signal="item_selected" from="menu/Tree" to="." method="_on_Tree_item_selected"]
+[connection signal="id_pressed" from="menu/Tree/SnipMenu" to="." method="_on_SnipMenu_id_pressed"]
+[connection signal="dir_selected" from="FileDialog" to="." method="_on_FileDialog_dir_selected"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_FileDialog_file_selected"]
+[connection signal="timeout" from="msgTimer" to="." method="_on_msgTimer_timeout"]

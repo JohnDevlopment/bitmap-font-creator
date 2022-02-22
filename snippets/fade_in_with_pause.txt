@@ -1,0 +1,4 @@
+Game.set_paused(true)
+TransitionRect.fade_in()
+yield(TransitionRect, 'fade_finished')
+Game.set_paused(false)

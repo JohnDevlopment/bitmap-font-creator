@@ -1,0 +1,2 @@
+func set_option_name(param) -> void:
+	option_name = param
