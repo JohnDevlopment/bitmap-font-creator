@@ -4,6 +4,7 @@ extends VBoxContainer
 signal property_changed(index, property, new_value)
 signal debug_print(text)
 
+onready var TextureDisplay : TextureRect = $TextureDisplay
 var vframes := 1 setget set_vframes
 var hframes := 1 setget set_hframes
 
@@ -11,7 +12,7 @@ func _on_TrashButton_pressed() -> void:
 	_debug_print("Delete texture ID %d" % get_index())
 	queue_free()
 
-func get_texture() -> Texture: return $TextureRect.texture
+func get_texture() -> Texture: return TextureDisplay.texture
 
 func load_texture(path: String) -> int:
 	var tex = load(path)
@@ -26,9 +27,11 @@ func load_texture(path: String) -> int:
 func set_hframes(value: int):
 	hframes = value
 	$Actions/HFrames.value = value
+	TextureDisplay.h_frames = value
+	update()
 
 func set_texture(tex: Texture) -> void:
-	$TextureRect.texture = tex
+	TextureDisplay.texture = tex
 	
 	var tex_size : Vector2 = (tex as Texture).get_size()
 	$Actions/HFrames.max_value = tex_size.x / 2
@@ -37,6 +40,8 @@ func set_texture(tex: Texture) -> void:
 func set_vframes(value: int):
 	vframes = value
 	$Actions/VFrames.value = value
+	TextureDisplay.v_frames = value
+	update()
 
 func _on_HFrames_value_changed(value: float) -> void:
 	hframes = value
