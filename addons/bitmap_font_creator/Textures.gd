@@ -67,6 +67,7 @@ func _update_texture_ids() -> void:
 func _on_texture_removed() -> void:
 	if not _no_update:
 		call_deferred('_update_texture_ids')
+		emit_texture_count_changed()
 
 func edit(font: BitmapFont, _undo_redo: UndoRedo) -> void:
 	edited_font = font
