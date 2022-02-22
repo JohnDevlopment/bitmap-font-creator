@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://addons/bitmap_font_creator/CharMapping.gd" type="Script" id=1]
 [ext_resource path="res://addons/bitmap_font_creator/trash-icon.png" type="Texture" id=2]
+[ext_resource path="res://addons/bitmap_font_creator/Vector2.tscn" type="PackedScene" id=3]
 
 [node name="CharMapping" type="VBoxContainer"]
 anchor_right = 1.0
@@ -15,7 +16,7 @@ __meta__ = {
 
 [node name="GridContainer" type="GridContainer" parent="."]
 margin_right = 1024.0
-margin_bottom = 42.0
+margin_bottom = 70.0
 custom_constants/hseparation = 15
 columns = 4
 
@@ -24,13 +25,13 @@ margin_right = 60.0
 margin_bottom = 14.0
 text = "Character"
 
-[node name="IndexLabel" type="Label" parent="GridContainer"]
+[node name="CellLabel" type="Label" parent="GridContainer"]
 margin_left = 75.0
 margin_right = 149.0
 margin_bottom = 14.0
-text = "Index"
+text = "Cell"
 
-[node name="IndexLabel2" type="Label" parent="GridContainer"]
+[node name="TextureLabel" type="Label" parent="GridContainer"]
 margin_left = 164.0
 margin_right = 238.0
 margin_bottom = 14.0
@@ -45,6 +46,7 @@ margin_bottom = 14.0
 margin_top = 18.0
 margin_right = 60.0
 margin_bottom = 42.0
+size_flags_vertical = 0
 max_length = 1
 context_menu_enabled = false
 shortcut_keys_enabled = false
@@ -53,27 +55,30 @@ placeholder_text = "A"
 caret_blink = true
 caret_blink_speed = 0.5
 
-[node name="Index" type="SpinBox" parent="GridContainer"]
+[node name="Cell" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 75.0
 margin_top = 18.0
 margin_right = 149.0
-margin_bottom = 42.0
-allow_greater = true
+margin_bottom = 70.0
 
 [node name="TextureID" type="SpinBox" parent="GridContainer"]
 margin_left = 164.0
 margin_top = 18.0
 margin_right = 238.0
 margin_bottom = 42.0
+size_flags_vertical = 0
 
 [node name="TrashButton" type="Button" parent="GridContainer"]
 margin_left = 253.0
 margin_top = 18.0
 margin_right = 281.0
-margin_bottom = 42.0
+margin_bottom = 40.0
+size_flags_vertical = 0
 icon = ExtResource( 2 )
 
 [connection signal="text_changed" from="GridContainer/Character" to="." method="_on_Character_text_changed"]
-[connection signal="value_changed" from="GridContainer/Index" to="." method="_on_Index_value_changed"]
+[connection signal="value_changed" from="GridContainer/Cell" to="." method="_on_Cell_value_changed"]
 [connection signal="value_changed" from="GridContainer/TextureID" to="." method="_on_Texture_value_changed"]
 [connection signal="pressed" from="GridContainer/TrashButton" to="." method="_on_TrashButton_pressed"]

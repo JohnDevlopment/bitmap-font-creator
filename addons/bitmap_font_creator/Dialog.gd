@@ -23,7 +23,6 @@ func edit(font: BitmapFont) -> void:
 	_init_font(font)
 	$Tabs/Textures.edit(font, undo_redo)
 	$'Tabs/Character Mappings'.edit(font, undo_redo)
-	#(edited_font as Resource).connect('changed', self, '_on_resource_changed')
 
 func save() -> void:
 	if edited_font:
@@ -38,10 +37,6 @@ func set_meta_default(object: Object, meta: String, value) -> void:
 		object.set_meta(meta, value)
 
 func clear_state() -> void:
-	# If current edited font has a signal connection, disconnect it
-#	if is_instance_valid(edited_font):
-#		if (edited_font as Resource).is_connected('changed', self, '_on_resource_changed'):
-#			(edited_font as Resource).disconnect('changed', self, '_on_resource_changed')
 	$Tabs/Textures._clear_state()
 	$'Tabs/Character Mappings'._clear_state()
 	edited_font = null
@@ -54,6 +49,3 @@ func _on_Textures_texture_count_changed(new_count: int) -> void:
 
 func _on_Character_Mappings_mapping_added(node: Node) -> void:
 	node.call('set_texture_count', texture_count)
-
-#func _on_resource_changed():
-#	print('resource has changed')
