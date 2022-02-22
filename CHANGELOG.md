@@ -4,11 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.0]
 ## Added
 
 * Debug messages (enable with "Bitmap Font Plugin/Print Messages" under the project settings)
 * Icon for the plugin (in plugin folder)
+* Grid drawn on texture when the vframes and hframes are changed
+* Textures are labeled with their ID so you don't have to guess
 
 ## Fixed
 
@@ -29,4 +31,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Use multiple textures for one font
 
 [Unreleased]: https://github.com/JohnDevlopment/bitmap-font-creator/compare/v0.2...HEAD
+[1.0]: https://github.com/JohnDevlopment/bitmap-font-creator/compare/v0.2...v1.0
 [0.2]: https://github.com/JohnDevlopment/bitmap-font-creator/compare/v0.1...v0.2

@@ -5,6 +5,10 @@ To use this plugin, simply copy the `bitmap_font_creator` folder to your own God
 
 The first time you enable the plugin, a new setting is added to your project settings. As of right now, the settings are grouped under "Bitmap Font Plugin".
 
+## Version 1.0
+
+This is the first production-ready version of the plugin. You can use it in your project and it will work without too many issues. Of course, bus are bound to show up, so please report the bug if you come across it.
+
 ## Creation of a Bitmap Font
 
 To use this plugin, simply create or open a `BitmapFont` resource.
