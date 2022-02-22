@@ -8,6 +8,10 @@
 
 config_version=4
 
+[BitmapFontPlugin]
+
+debug/print_messages=true
+
 [application]
 
 config/name="Bitmap Font Creator Plugin"

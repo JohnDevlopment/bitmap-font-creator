@@ -2,11 +2,13 @@ tool
 extends VBoxContainer
 
 signal property_changed(index, property, new_value)
+signal debug_print(text)
 
 var vframes := 1 setget set_vframes
 var hframes := 1 setget set_hframes
 
 func _on_TrashButton_pressed() -> void:
+	_debug_print("Delete texture ID %d" % get_index())
 	queue_free()
 
 func get_texture() -> Texture: return $TextureRect.texture
@@ -46,3 +48,6 @@ func _on_VFrames_value_changed(value: float) -> void:
 
 func _update_texture_id() -> void:
 	$IDLabel.text = "ID: %d" % get_index()
+
+func _debug_print(text: String) -> void:
+	emit_signal('debug_print', text)
