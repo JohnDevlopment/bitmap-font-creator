@@ -2,11 +2,15 @@ tool
 extends EditorPlugin
 
 const Window = preload('res://addons/bitmap_font_creator/Dialog.tscn')
+const DebugSetting := 'BitmapFontPlugin/debug/print_messages'
 
 var _dialog : Control
 var _show_button
 
 func _enter_tree() -> void:
+	if not ProjectSettings.has_setting(DebugSetting):
+		ProjectSettings.set_setting(DebugSetting, false)
+	ProjectSettings.save()
 	_dialog = Window.instance()
 	_dialog.undo_redo = get_undo_redo()
 	_show_button = add_control_to_bottom_panel(_dialog, 'Bitmap Font')
@@ -20,11 +24,9 @@ func _exit_tree() -> void:
 
 func apply_changes() -> void:
 	if is_instance_valid(_dialog) and (_dialog as Control).is_visible_in_tree():
-		print('apply_changes')
 		_dialog.apply()
 
 func clear() -> void:
-	print('clear')
 	_dialog.clear_state()
 
 func edit(object: Object) -> void:

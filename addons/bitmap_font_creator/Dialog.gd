@@ -1,6 +1,8 @@
 tool
 extends MarginContainer
 
+const DebugSetting := 'BitmapFontPlugin/debug/print_messages'
+
 var edited_font
 var edited_font_path : String
 var texture_count := 0
@@ -12,7 +14,7 @@ func _init_font(font: Object):
 	set_meta_default(font, 'hframes', {})
 
 func apply() -> void:
-	print('apply in Dialog')
+	_debug_print("Apply changes to '%s'" % edited_font_path)
 	save()
 
 func edit(font: BitmapFont) -> void:
@@ -30,6 +32,7 @@ func save() -> void:
 		$Tabs/Textures.save(edited_font)
 		$'Tabs/Character Mappings'.save(edited_font)
 		if not edited_font_path.empty():
+			_debug_print("Saving '%s'" % edited_font_path)
 			ResourceSaver.save(edited_font_path, edited_font)
 
 func set_meta_default(object: Object, meta: String, value) -> void:
@@ -49,3 +52,7 @@ func _on_Textures_texture_count_changed(new_count: int) -> void:
 
 func _on_Character_Mappings_mapping_added(node: Node) -> void:
 	node.call('set_texture_count', texture_count)
+
+func _debug_print(text: String) -> void:
+	if ProjectSettings.get_setting(DebugSetting):
+		print(text)
