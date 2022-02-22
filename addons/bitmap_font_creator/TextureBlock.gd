@@ -28,7 +28,7 @@ func set_hframes(value: int):
 	hframes = value
 	$Actions/HFrames.value = value
 	TextureDisplay.h_frames = value
-	update()
+	_update_grid()
 
 func set_texture(tex: Texture) -> void:
 	TextureDisplay.texture = tex
@@ -41,14 +41,16 @@ func set_vframes(value: int):
 	vframes = value
 	$Actions/VFrames.value = value
 	TextureDisplay.v_frames = value
-	update()
+	_update_grid()
 
 func _on_HFrames_value_changed(value: float) -> void:
 	hframes = value
+	_update_grid()
 	emit_signal('property_changed', get_index(), 'hframes', value)
 
 func _on_VFrames_value_changed(value: float) -> void:
 	vframes = value
+	_update_grid()
 	emit_signal('property_changed', get_index(), 'vframes', value)
 
 func _update_texture_id() -> void:
@@ -56,3 +58,8 @@ func _update_texture_id() -> void:
 
 func _debug_print(text: String) -> void:
 	emit_signal('debug_print', text)
+
+func _update_grid() -> void:
+	TextureDisplay.v_frames = vframes
+	TextureDisplay.h_frames = hframes
+	TextureDisplay.update()
