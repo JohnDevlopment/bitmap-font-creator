@@ -10,6 +10,7 @@ var _show_button
 func _enter_tree() -> void:
 	if not ProjectSettings.has_setting(DebugSetting):
 		ProjectSettings.set_setting(DebugSetting, false)
+		ProjectSettings.set_initial_value(DebugSetting, false)
 	ProjectSettings.save()
 	_dialog = Window.instance()
 	_dialog.undo_redo = get_undo_redo()
