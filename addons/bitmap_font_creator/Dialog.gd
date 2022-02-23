@@ -17,6 +17,13 @@ func apply() -> void:
 	_debug_print("Apply changes to '%s'" % edited_font_path)
 	save()
 
+func clear_state() -> void:
+	$Tabs/Textures._clear_state()
+	$'Tabs/Character Mappings'._clear_state()
+	edited_font = null
+	edited_font_path = ''
+	texture_count = 0
+
 func edit(font: BitmapFont) -> void:
 	clear_state()
 	edited_font = font
@@ -25,12 +32,14 @@ func edit(font: BitmapFont) -> void:
 	_init_font(font)
 	$Tabs/Textures.edit(font, undo_redo)
 	$'Tabs/Character Mappings'.edit(font, undo_redo)
+	$Tabs/Properties.edit(font, undo_redo)
 
 func save() -> void:
 	if edited_font:
 		(edited_font as BitmapFont).clear()
 		$Tabs/Textures.save(edited_font)
 		$'Tabs/Character Mappings'.save(edited_font)
+		$Tabs/Properties.save(edited_font)
 		if not edited_font_path.empty():
 			_debug_print("Saving '%s'" % edited_font_path)
 			ResourceSaver.save(edited_font_path, edited_font)
@@ -39,12 +48,8 @@ func set_meta_default(object: Object, meta: String, value) -> void:
 	if not object.has_meta(meta):
 		object.set_meta(meta, value)
 
-func clear_state() -> void:
-	$Tabs/Textures._clear_state()
-	$'Tabs/Character Mappings'._clear_state()
-	edited_font = null
-	edited_font_path = ''
-	texture_count = 0
+func init() -> void:
+	$Tabs/Properties.connected_to_dialog = true
 
 func _on_Textures_texture_count_changed(new_count: int) -> void:
 	texture_count = new_count

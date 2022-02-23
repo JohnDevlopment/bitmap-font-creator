@@ -14,6 +14,7 @@ func _enter_tree() -> void:
 	ProjectSettings.save()
 	_dialog = Window.instance()
 	_dialog.undo_redo = get_undo_redo()
+	_dialog.init()
 	_show_button = add_control_to_bottom_panel(_dialog, 'Bitmap Font')
 	_show_button.hide()
 
