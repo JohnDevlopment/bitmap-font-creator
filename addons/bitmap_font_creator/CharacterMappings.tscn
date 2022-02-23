@@ -26,6 +26,6 @@ text = "Add Mapping"
 margin_top = 24.0
 margin_right = 1024.0
 margin_bottom = 24.0
-columns = 2
+columns = 3
 
 [connection signal="pressed" from="VBoxContainer/AddMappingButton" to="." method="_on_AddMappingButton_pressed"]
