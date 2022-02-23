@@ -8,6 +8,9 @@
 /README.md                      export-ignore
 /project.godot                  export-ignore
 /icon.png                       export-ignore
+/Main.gd                        export-ignore
+/Main.tscn                      export-ignore
+/snippets                       export-ignore
 
 # Ignore other plugins
 /addons/godot-plugin-refresher  export-ignore
