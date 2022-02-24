@@ -5,15 +5,20 @@ To use this plugin, simply copy the `bitmap_font_creator` folder to your own God
 
 The first time you enable the plugin, a new setting is added to your project settings. As of right now, the settings are grouped under "Bitmap Font Plugin".
 
-## Version 1.0
+## Version 1.1 (In Development)
 
-This is the first production-ready version of the plugin. You can use it in your project and it will work without too many issues. Of course, bus are bound to show up, so please report the bug if you come across it.
-
-## Creation of a Bitmap Font
+## How To Use
 
 To use this plugin, simply create or open a `BitmapFont` resource.
 
 Pick a name for your font and save it. Once you do there should be a new window at the bottom.
+
+The first thing you will see is the "Properties" tab. It contains the properties of the bitmap font.
+
+![Properties window](README_images/prop-window.png)
+*Properties of the bitmap font*
+
+As you can see, the exact same properties you can see in the inspector are there.
 
 In the "Textures" tab, you can see the textures that are used by the font. If you just created the font, nothing will be there. Click on the "Add Texture" button to open a file dialog. Once you've chosen a texture it will show in the window (see example below).
 
