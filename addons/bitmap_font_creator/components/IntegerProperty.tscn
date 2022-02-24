@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/bitmap_font_creator/components/IntegerProperty.gd" type="Script" id=1]
+
+[node name="IntegerProperty" type="HBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+hint_tooltip = "Property: label
+
+"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NameLabel" type="Label" parent="."]
+margin_top = 13.0
+margin_right = 34.0
+margin_bottom = 27.0
+text = "Label"
+
+[node name="IntegerValue" type="SpinBox" parent="."]
+margin_left = 38.0
+margin_right = 112.0
+margin_bottom = 40.0
+max_value = 1.0
+
+[connection signal="value_changed" from="IntegerValue" to="." method="_on_IntegerValue_value_changed"]

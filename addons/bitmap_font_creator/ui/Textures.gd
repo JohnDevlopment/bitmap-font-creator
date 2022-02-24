@@ -4,7 +4,7 @@ extends MarginContainer
 signal texture_count_changed(new_count)
 signal debug_print(text)
 
-const TextureBlock = preload('res://addons/bitmap_font_creator/TextureBlock.tscn')
+const TextureBlock = preload('res://addons/bitmap_font_creator/components/TextureBlock.tscn')
 
 onready var OpenFileDialog: FileDialog = get_node("OpenFileDialog")
 onready var TexturesGrid: GridContainer = get_node("ScrollContainer/VBoxContainer/TexturesGrid")

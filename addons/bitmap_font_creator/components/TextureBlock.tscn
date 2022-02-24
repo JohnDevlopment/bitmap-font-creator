@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://addons/bitmap_font_creator/TextureBlock.gd" type="Script" id=1]
-[ext_resource path="res://addons/bitmap_font_creator/trash-icon.png" type="Texture" id=2]
-[ext_resource path="res://addons/bitmap_font_creator/TextureDisplay.gd" type="Script" id=3]
+[ext_resource path="res://addons/bitmap_font_creator/trash-icon.png" type="Texture" id=1]
+[ext_resource path="res://addons/bitmap_font_creator/ui/TextureDisplay.gd" type="Script" id=2]
+[ext_resource path="res://addons/bitmap_font_creator/components/TextureBlock.gd" type="Script" id=3]
 
 [node name="Texture" type="VBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -39,7 +39,7 @@ margin_top = 18.0
 margin_right = 1024.0
 margin_bottom = 18.0
 size_flags_horizontal = 3
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 
 [node name="Actions" type="HBoxContainer" parent="."]
 margin_top = 22.0
@@ -77,7 +77,7 @@ value = 1.0
 margin_left = 276.0
 margin_right = 304.0
 margin_bottom = 24.0
-icon = ExtResource( 2 )
+icon = ExtResource( 1 )
 
 [connection signal="value_changed" from="Actions/HFrames" to="." method="_on_HFrames_value_changed"]
 [connection signal="value_changed" from="Actions/VFrames" to="." method="_on_VFrames_value_changed"]

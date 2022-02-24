@@ -3,7 +3,7 @@ extends ScrollContainer
 
 signal mapping_added(node)
 
-const CharMapping = preload('res://addons/bitmap_font_creator/CharMapping.tscn')
+const CharMapping = preload('res://addons/bitmap_font_creator/components/CharMapping.tscn')
 
 var undo_redo : UndoRedo
 
