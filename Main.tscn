@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
-[ext_resource path="res://addons/bitmap_font_creator/components/Vector2.tscn" type="PackedScene" id=2]
-[ext_resource path="res://addons/bitmap_font_creator/components/IntegerProperty.tscn" type="PackedScene" id=3]
+[ext_resource path="res://new_bitmapfont.tres" type="BitmapFont" id=2]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -13,77 +12,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Margin" type="MarginContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 46.0
-margin_top = 38.0
-margin_right = -59.0
-margin_bottom = -55.0
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": true
-}
-
-[node name="Rows" type="VBoxContainer" parent="Margin"]
-margin_right = 919.0
-margin_bottom = 507.0
-
-[node name="VectorControl" parent="Margin/Rows" instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 422.0
-margin_right = 496.0
-margin_bottom = 52.0
-size_flags_horizontal = 4
-
-[node name="VectorLabel" type="Label" parent="Margin/Rows"]
-margin_top = 56.0
-margin_right = 919.0
-margin_bottom = 70.0
-text = "555"
-align = 1
-
-[node name="HSeparator" type="HSeparator" parent="Margin/Rows"]
-margin_top = 74.0
-margin_right = 919.0
-margin_bottom = 78.0
-
-[node name="IntegerProperty" parent="Margin/Rows" instance=ExtResource( 3 )]
-margin_left = 387.0
-margin_top = 82.0
-margin_right = 531.0
-margin_bottom = 106.0
-hint_tooltip = "Property: example
-
-An example property"
-size_flags_horizontal = 4
-label = "Example"
-max_value = 1024
-property_hint = "An example property"
-
-[node name="Label" type="Label" parent="Margin/Rows/IntegerProperty"]
-margin_left = 136.0
-margin_top = 5.0
-margin_right = 144.0
-margin_bottom = 19.0
-text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Margin/Rows"]
-margin_top = 110.0
-margin_right = 919.0
-margin_bottom = 210.0
-rect_min_size = Vector2( 0, 100 )
-bbcode_enabled = true
-bbcode_text = "Property: [b]Example[/b]
-
-Some such nonsense."
-text = "Property: Example
-
-Some such nonsense."
-
-[connection signal="value_changed" from="Margin/Rows/VectorControl" to="." method="_on_Vector2_value_changed"]
-[connection signal="value_changed" from="Margin/Rows/IntegerProperty" to="." method="_on_IntegerProperty_value_changed"]
+[node name="Label" type="Label" parent="."]
+margin_left = 355.0
+margin_top = 204.0
+margin_right = 395.0
+margin_bottom = 218.0
+custom_fonts/font = ExtResource( 2 )
+text = "0123456789"
