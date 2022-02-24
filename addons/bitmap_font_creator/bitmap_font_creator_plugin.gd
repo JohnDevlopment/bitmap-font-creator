@@ -35,8 +35,8 @@ func edit(object: Object) -> void:
 	if is_instance_valid(_dialog):
 		_dialog.edit(object)
 
-#func get_plugin_icon() -> Texture:
-#	return get_editor_interface().get_base_control().get_icon("Node", "EditorIcons")
+func get_plugin_icon() -> Texture:
+	return load('res://addons/bitmap_font_creator/icon.png') as Texture
 
 func get_plugin_name() -> String: return 'Bitmap Font Creator'
 
