@@ -27,7 +27,7 @@ func set_property_hint(hint: String) -> void:
 	hint_tooltip = "Property: %s\n\n%s" % [label.to_lower(), property_hint]
 
 func set_value(_value: int) -> void:
-	value = int(clamp(value, min_value, max_value))
+	value = int(clamp(_value, min_value, max_value))
 	$IntegerValue.value = value
 
 func _on_IntegerValue_value_changed(_value: float) -> void:
