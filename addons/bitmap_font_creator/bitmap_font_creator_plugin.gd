@@ -11,7 +11,7 @@ func _enter_tree() -> void:
 	if not ProjectSettings.has_setting(DebugSetting):
 		ProjectSettings.set_setting(DebugSetting, false)
 		ProjectSettings.set_initial_value(DebugSetting, false)
-	ProjectSettings.save()
+		ProjectSettings.save()
 	_dialog = Window.instance()
 	_dialog.undo_redo = get_undo_redo()
 	_dialog.init()
@@ -19,10 +19,11 @@ func _enter_tree() -> void:
 	_show_button.hide()
 
 func _exit_tree() -> void:
-	remove_control_from_bottom_panel(_dialog)
-	_dialog.queue_free()
-	_dialog = null
-	_show_button = null
+	if is_instance_valid(_dialog):
+		remove_control_from_bottom_panel(_dialog)
+		_dialog.queue_free()
+		_dialog = null
+		_show_button = null
 
 func apply_changes() -> void:
 	if is_instance_valid(_dialog) and (_dialog as Control).is_visible_in_tree():
