@@ -1,3 +1,4 @@
+tool
 extends Node
 
 const VERSION: String = "1.0"
