@@ -1,15 +1,21 @@
 tool
-extends GridContainer
+extends Container
 
 signal value_changed(new_value)
 
 var value : Vector2 setget set_value
 
-onready var X = $X
-onready var Y = $Y
+onready var X = $HBoxContainer/X
+onready var Y = $HBoxContainer2/Y
+
+export var label := '' setget set_label
 
 func _ready() -> void:
 	call_deferred('_update_controls')
+
+func set_label(_label: String) -> void:
+	label = _label
+	$Label.text = label
 
 func set_value(v: Vector2) -> void:
 	value = v

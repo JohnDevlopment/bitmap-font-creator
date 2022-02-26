@@ -1,79 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[sub_resource type="GDScript" id=2]
-script/source = "tool
-extends GridContainer
-
-signal value_changed(new_value)
-
-var value : Vector2 setget set_value
-
-onready var X = $X
-onready var Y = $Y
-
-func _ready() -> void:
-	call_deferred('_update_controls')
-
-func set_value(v: Vector2) -> void:
-	value = v
-	call_deferred('_update_controls')
-
-func _vector_changed(new_text: String, extra_arg_0: String) -> void:
-	var _value : float
-	
-	call_deferred('_update_controls')
-	call_deferred('_unfocus_controls')
-	
-	if not new_text.is_valid_integer() and not new_text.is_valid_float(): return
-	_value = float(new_text)
-	if extra_arg_0 == 'x':
-		value.x = _value
-	else:
-		value.y = _value
-	emit_signal('value_changed', value)
-
-func _on_focus_exited(component: String) -> void:
-	var new_text : String
-	var control
-	var data := {
-		'x': {
-			control = X,
-			old_value = value.x
-		},
-		'y': {
-			control = Y,
-			old_value = value.y
-		}
-	}
-	
-	control = data[component].control
-	new_text = (control as LineEdit).text
-	
-	# If the new value and the current value are the same
-	if new_text == str(data[component].old_value): return
-	
-	if _is_valid_change(new_text):
-		call_deferred('_update_controls')
-		if component == 'x':
-			value.x = float(new_text)
-		else:
-			value.y = float(new_text)
-		emit_signal('value_changed', value)
-	else:
-		control.text = str(data[component].old_value)
-
-func _update_controls() -> void:
-	X.text = str(value.x)
-	Y.text = str(value.y)
-
-func _unfocus_controls() -> void:
-	for node in [X, Y]:
-		if (node as Control).has_focus():
-			(node as Control).release_focus()
-
-func _is_valid_change(new_text: String) -> bool:
-	return new_text.is_valid_integer() or new_text.is_valid_float()
-"
+[ext_resource path="res://addons/bitmap_font_creator/components/Vector2.gd" type="Script" id=1]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 4.0
@@ -87,16 +14,24 @@ expand_margin_right = 4.0
 expand_margin_top = 4.0
 expand_margin_bottom = 4.0
 
-[node name="Vector2" type="GridContainer"]
+[node name="Vector2" type="VBoxContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-columns = 2
-script = SubResource( 2 )
+script = ExtResource( 1 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_lock_": true
 }
 
-[node name="XLabel" type="Label" parent="."]
+[node name="Label" type="Label" parent="."]
+margin_right = 1024.0
+margin_bottom = 14.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_top = 18.0
+margin_right = 1024.0
+margin_bottom = 42.0
+
+[node name="XLabel" type="Label" parent="HBoxContainer"]
 light_mask = 0
 margin_top = 4.0
 margin_right = 12.0
@@ -105,30 +40,38 @@ custom_colors/font_color = Color( 1, 0, 0, 1 )
 custom_styles/normal = SubResource( 1 )
 text = "x"
 
-[node name="X" type="LineEdit" parent="."]
+[node name="X" type="LineEdit" parent="HBoxContainer"]
 light_mask = 0
 margin_left = 16.0
 margin_right = 74.0
 margin_bottom = 24.0
 text = "0"
+caret_blink = true
+caret_blink_speed = 0.5
 
-[node name="YLabel" type="Label" parent="."]
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+margin_top = 46.0
+margin_right = 1024.0
+margin_bottom = 70.0
+
+[node name="YLabel" type="Label" parent="HBoxContainer2"]
 light_mask = 0
-margin_top = 32.0
+margin_top = 4.0
 margin_right = 12.0
-margin_bottom = 48.0
+margin_bottom = 20.0
 custom_colors/font_color = Color( 0, 1, 0.0627451, 1 )
 custom_styles/normal = SubResource( 1 )
 text = "y"
 
-[node name="Y" type="LineEdit" parent="."]
+[node name="Y" type="LineEdit" parent="HBoxContainer2"]
 margin_left = 16.0
-margin_top = 28.0
 margin_right = 74.0
-margin_bottom = 52.0
+margin_bottom = 24.0
 text = "0"
+caret_blink = true
+caret_blink_speed = 0.5
 
-[connection signal="focus_exited" from="X" to="." method="_on_focus_exited" binds= [ "x" ]]
-[connection signal="text_entered" from="X" to="." method="_vector_changed" binds= [ "x" ]]
-[connection signal="focus_exited" from="Y" to="." method="_on_focus_exited" binds= [ "y" ]]
-[connection signal="text_entered" from="Y" to="." method="_vector_changed" binds= [ "y" ]]
+[connection signal="focus_exited" from="HBoxContainer/X" to="." method="_on_focus_exited" binds= [ "x" ]]
+[connection signal="text_entered" from="HBoxContainer/X" to="." method="_vector_changed" binds= [ "x" ]]
+[connection signal="focus_exited" from="HBoxContainer2/Y" to="." method="_on_focus_exited" binds= [ "y" ]]
+[connection signal="text_entered" from="HBoxContainer2/Y" to="." method="_vector_changed" binds= [ "y" ]]
