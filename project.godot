@@ -21,6 +21,7 @@ config/icon="res://icon.png"
 [autoload]
 
 NodeMapper="*res://addons/node_mapper/NodeMapper.gd"
+BFCHelpers="*res://addons/bitmap_font_creator/BFCHelpers.gd"
 
 [debug]
 
