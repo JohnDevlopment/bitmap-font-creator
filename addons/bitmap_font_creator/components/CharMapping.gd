@@ -6,12 +6,9 @@ var cell : Vector2 setget set_cell
 var max_cell : Vector2
 var texture := 0 setget set_texture
 
-onready var Character: LineEdit = get_node("GridContainer/Character")
-onready var TextureID: SpinBox = get_node("GridContainer/TextureID")
-onready var Cell: Control = get_node('GridContainer/Cell')
-
-func _on_Character_text_changed(new_text: String) -> void:
-	character = new_text
+onready var Character: VBoxContainer = get_node("HBoxContainer/Character")
+onready var Cell: VBoxContainer = get_node("HBoxContainer/Cell")
+onready var TextureID: VBoxContainer = get_node("HBoxContainer/TextureID")
 
 func set_cell(v: Vector2) -> void:
 	cell = v

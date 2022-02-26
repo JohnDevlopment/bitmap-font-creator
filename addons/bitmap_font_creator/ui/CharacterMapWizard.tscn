@@ -1,0 +1,116 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/bitmap_font_creator/ui/CharacterMapWizard.gd" type="Script" id=1]
+[ext_resource path="res://addons/bitmap_font_creator/components/StringProperty.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/bitmap_font_creator/components/IntegerProperty.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/bitmap_font_creator/components/Vector2.tscn" type="PackedScene" id=4]
+
+[node name="CharacterMapWizard" type="WindowDialog"]
+margin_right = 964.0
+margin_bottom = 540.0
+popup_exclusive = true
+window_title = "Character Mapping Wizard"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = 30.0
+margin_right = -30.0
+margin_bottom = -30.0
+focus_mode = 2
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 904.0
+margin_bottom = 480.0
+
+[node name="TextureCountLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_left = 391.0
+margin_right = 512.0
+margin_bottom = 14.0
+size_flags_horizontal = 6
+text = "Textures Loaded: 0"
+
+[node name="Inputs" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 904.0
+margin_bottom = 140.0
+custom_constants/vseparation = 10
+custom_constants/hseparation = 10
+columns = 2
+
+[node name="StartChar" parent="MarginContainer/VBoxContainer/Inputs" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 126.0
+margin_bottom = 42.0
+max_length = 1
+label = "Starting Character"
+
+[node name="EndChar" parent="MarginContainer/VBoxContainer/Inputs" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 136.0
+margin_right = 242.0
+margin_bottom = 42.0
+max_length = 1
+label = "Ending Character"
+
+[node name="TextureID" parent="MarginContainer/VBoxContainer/Inputs" instance=ExtResource( 3 )]
+margin_top = 52.0
+margin_right = 126.0
+margin_bottom = 122.0
+hint_tooltip = "Property: texture
+
+The ID of the texture to use."
+label = "Texture"
+property_hint = "The ID of the texture to use."
+
+[node name="Cell" parent="MarginContainer/VBoxContainer/Inputs" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 136.0
+margin_top = 52.0
+margin_right = 242.0
+margin_bottom = 122.0
+label = "Cell"
+
+[node name="Buttons" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 460.0
+margin_right = 904.0
+margin_bottom = 480.0
+size_flags_vertical = 10
+
+[node name="ConfirmButton" type="Button" parent="MarginContainer/VBoxContainer/Buttons"]
+margin_right = 114.0
+margin_bottom = 20.0
+text = "Submit Changes"
+
+[node name="CancelButton" type="Button" parent="MarginContainer/VBoxContainer/Buttons"]
+margin_left = 850.0
+margin_right = 904.0
+margin_bottom = 20.0
+size_flags_horizontal = 10
+text = "Cancel"
+
+[node name="Confirm" type="ConfirmationDialog" parent="MarginContainer"]
+margin_right = 904.0
+margin_bottom = 480.0
+popup_exclusive = true
+window_title = "Confirm Changes?"
+
+[node name="AlertDialog" type="AcceptDialog" parent="MarginContainer"]
+margin_right = 904.0
+margin_bottom = 480.0
+window_title = "Error!"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/ConfirmButton" to="." method="_on_ConfirmButton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/CancelButton" to="." method="_on_CancelButton_pressed"]
+[connection signal="confirmed" from="MarginContainer/Confirm" to="." method="_insert_characters"]
