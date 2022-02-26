@@ -36,3 +36,20 @@ func save(font: BitmapFont) -> void:
 	font.height = Height.value
 	font.ascent = Ascent.value
 	font.distance_field = DistanceField.is_pressed()
+
+func _on_integer_value_changed(old_value: int, value: int, _name: String) -> void:
+	undo_redo.create_action('Set font %s' % _name)
+	match _name:
+		'height':
+			undo_redo.add_do_property(Height, 'value', value)
+			undo_redo.add_undo_property(Height, 'value', old_value)
+		'ascent':
+			undo_redo.add_do_property(Ascent, 'value', value)
+			undo_redo.add_undo_property(Ascent, 'value', old_value)
+	undo_redo.commit_action()
+
+func _on_DistanceField_toggled(button_pressed: bool) -> void:
+	undo_redo.create_action('Set font distance field')
+	undo_redo.add_do_property(DistanceField, 'pressed', button_pressed)
+	undo_redo.add_undo_property(DistanceField, 'pressed', !button_pressed)
+	undo_redo.commit_action()

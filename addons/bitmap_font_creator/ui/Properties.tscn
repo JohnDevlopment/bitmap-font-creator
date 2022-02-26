@@ -49,3 +49,7 @@ hint_tooltip = "Property: distance_field
 
 If true, distance field hint is enabled."
 text = "Distance Field"
+
+[connection signal="value_changed" from="VBoxContainer/Height" to="." method="_on_integer_value_changed" binds= [ "height" ]]
+[connection signal="value_changed" from="VBoxContainer/Ascent" to="." method="_on_integer_value_changed" binds= [ "ascent" ]]
+[connection signal="toggled" from="VBoxContainer/DistanceField" to="." method="_on_DistanceField_toggled"]

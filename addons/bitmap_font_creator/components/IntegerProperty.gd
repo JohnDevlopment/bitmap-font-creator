@@ -1,7 +1,7 @@
 tool
 extends HBoxContainer
 
-signal value_changed(value)
+signal value_changed(old_value, value)
 
 export var label := 'Label' setget set_label
 export var min_value := 0 setget set_min_value
@@ -31,8 +31,9 @@ func set_value(_value: int) -> void:
 	$IntegerValue.value = value
 
 func _on_IntegerValue_value_changed(_value: float) -> void:
+	var old_value := value
 	value = int(_value)
-	emit_signal('value_changed', value)
+	emit_signal('value_changed', old_value, value)
 
 func _update_controls():
 	var integer_value = $IntegerValue
