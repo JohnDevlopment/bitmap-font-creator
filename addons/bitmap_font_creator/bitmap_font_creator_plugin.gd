@@ -30,7 +30,8 @@ func apply_changes() -> void:
 		_dialog.apply()
 
 func clear() -> void:
-	_dialog.clear_state()
+	if is_instance_valid(_dialog):
+		_dialog.clear_state()
 
 func edit(object: Object) -> void:
 	if is_instance_valid(_dialog):
@@ -59,7 +60,7 @@ func make_visible(visible: bool) -> void:
 		if (_dialog as Control).is_visible_in_tree():
 			hide_bottom_panel()
 
-func save_external_data() -> void:
-	if is_instance_valid(_dialog) and (_dialog as Control).is_visible_in_tree():
-		print('save_external_data')
-		_dialog.save()
+#func save_external_data() -> void:
+#	if is_instance_valid(_dialog) and (_dialog as Control).is_visible_in_tree():
+#		print('save_external_data')
+#		_dialog.save()
