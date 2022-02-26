@@ -80,7 +80,7 @@ func _insert_characters() -> void:
 		# make list of cells
 		var end : String = EndChar.value
 		var hframes : int = (edited_font as BitmapFont).get_meta('hframes')[texid]
-		var end_cell := Vector2()
+		var end_cell := start_cell
 		for i in range(ord(end) - ord(start) + 1):
 			if int(end_cell.x) == hframes:
 				end_cell.x = 0
