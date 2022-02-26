@@ -27,11 +27,13 @@ func _ready() -> void:
 	hbox.add_child(resource_picker, true)
 
 func edit(font: BitmapFont, _undo_redo: UndoRedo):
+	set_meta('_lock_signals', true)
 	edited_font = font
 	undo_redo = _undo_redo
 	Height.value = font.get_height()
 	Ascent.value = font.get_ascent()
 	DistanceField.set_pressed_no_signal(font.is_distance_field_hint())
+	set_meta('_lock_signals', false)
 
 func save(font: BitmapFont) -> void:
 	font.height = Height.value
@@ -39,6 +41,7 @@ func save(font: BitmapFont) -> void:
 	font.distance_field = DistanceField.is_pressed()
 
 func _on_integer_value_changed(old_value: int, value: int, _name: String) -> void:
+	if get_meta('_lock_signals'): return
 	undo_redo.create_action('Set font %s' % _name)
 	match _name:
 		'height':
@@ -50,6 +53,7 @@ func _on_integer_value_changed(old_value: int, value: int, _name: String) -> voi
 	undo_redo.commit_action()
 
 func _on_DistanceField_toggled(button_pressed: bool) -> void:
+	if get_meta('_lock_signals'): return
 	undo_redo.create_action('Set font distance field')
 	undo_redo.add_do_property(DistanceField, 'pressed', button_pressed)
 	undo_redo.add_undo_property(DistanceField, 'pressed', !button_pressed)
