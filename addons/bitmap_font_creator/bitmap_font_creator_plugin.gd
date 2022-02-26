@@ -19,6 +19,7 @@ func _enter_tree() -> void:
 	_dialog.undo_redo = get_undo_redo()
 	_show_button = add_control_to_bottom_panel(_dialog, 'Bitmap Font')
 	_show_button.hide()
+	_dialog.connect('launch_charmap_wizard', self, '_launch_charmap_wizard')
 	_dialog.init()
 	# Inspector plugin
 	_inspector_plugin = preload('res://addons/bitmap_font_creator/inspector_plugin.gd').new()
@@ -72,3 +73,11 @@ func make_visible(visible: bool) -> void:
 #	if is_instance_valid(_dialog) and (_dialog as Control).is_visible_in_tree():
 #		print('save_external_data')
 #		_dialog.save()
+
+func _launch_charmap_wizard(font: BitmapFont, font_res_path: String, texture_count: int):
+	var dlg = preload('res://addons/bitmap_font_creator/ui/CharacterMapWizard.tscn').instance()
+	get_editor_interface().get_base_control().add_child(dlg)
+	(dlg as Popup).popup_centered_ratio(0.5)
+	clear()
+	make_visible(false)
+	dlg.edit(font, font_res_path, texture_count)

@@ -2,6 +2,7 @@ tool
 extends ScrollContainer
 
 signal mapping_added(node)
+signal launch_wizard
 
 const CharMapping = preload('res://addons/bitmap_font_creator/components/CharMapping.tscn')
 
@@ -56,3 +57,11 @@ func _get_cell_size(font: BitmapFont, texture: int) -> Vector2:
 func _clear_state() -> void:
 	for node in $VBoxContainer/MappingsGrid.get_children():
 		(node as Node).queue_free()
+
+func _on_CharMapWizard_pressed() -> void:
+	var dlg = $VBoxContainer/ConfirmationDialog
+	dlg.dialog_text = 'Launch Character Map Wizard?'
+	dlg.popup_centered()
+
+func _on_ConfirmationDialog_confirmed() -> void:
+	emit_signal('launch_wizard')

@@ -14,7 +14,7 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_right = 1024.0
-margin_bottom = 24.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 
 [node name="AddMappingButton" type="Button" parent="VBoxContainer"]
@@ -22,10 +22,22 @@ margin_right = 1024.0
 margin_bottom = 20.0
 text = "Add Mapping"
 
-[node name="MappingsGrid" type="GridContainer" parent="VBoxContainer"]
+[node name="CharMapWizard" type="Button" parent="VBoxContainer"]
 margin_top = 24.0
 margin_right = 1024.0
-margin_bottom = 24.0
+margin_bottom = 44.0
+text = "Launch Character Map Wizard"
+
+[node name="MappingsGrid" type="GridContainer" parent="VBoxContainer"]
+margin_top = 48.0
+margin_right = 1024.0
+margin_bottom = 48.0
 columns = 3
 
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="VBoxContainer"]
+margin_right = 200.0
+margin_bottom = 70.0
+
 [connection signal="pressed" from="VBoxContainer/AddMappingButton" to="." method="_on_AddMappingButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/CharMapWizard" to="." method="_on_CharMapWizard_pressed"]
+[connection signal="confirmed" from="VBoxContainer/ConfirmationDialog" to="." method="_on_ConfirmationDialog_confirmed"]

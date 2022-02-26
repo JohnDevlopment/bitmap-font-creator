@@ -45,6 +45,7 @@ margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
 
+[connection signal="launch_wizard" from="Tabs/Character Mappings" to="." method="_on_Character_Mappings_launch_wizard"]
 [connection signal="mapping_added" from="Tabs/Character Mappings" to="." method="_on_Character_Mappings_mapping_added"]
 [connection signal="debug_print" from="Tabs/Textures" to="." method="_debug_print"]
 [connection signal="texture_count_changed" from="Tabs/Textures" to="." method="_on_Textures_texture_count_changed"]

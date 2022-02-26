@@ -1,6 +1,8 @@
 tool
 extends MarginContainer
 
+signal launch_charmap_wizard(font, font_path, texture_count)
+
 const DebugSetting := 'BitmapFontPlugin/debug/print_messages'
 
 var edited_font
@@ -62,3 +64,6 @@ func _on_Character_Mappings_mapping_added(node: Node) -> void:
 func _debug_print(text: String) -> void:
 	if ProjectSettings.get_setting(DebugSetting):
 		print(text)
+
+func _on_Character_Mappings_launch_wizard() -> void:
+	emit_signal('launch_charmap_wizard', edited_font, edited_font_path, texture_count)
