@@ -13,6 +13,7 @@ func _enter_tree() -> void:
 		ProjectSettings.set_setting(DebugSetting, false)
 		ProjectSettings.set_initial_value(DebugSetting, false)
 		ProjectSettings.save()
+	add_autoload_singleton('BFCHelpers', 'res://addons/bitmap_font_creator/BFCHelpers.gd')
 	# Add dialog to bottom window
 	_dialog = Window.instance()
 	_dialog.inspector = get_editor_interface().get_inspector()
@@ -33,6 +34,7 @@ func _exit_tree() -> void:
 		_show_button = null
 	if _inspector_plugin:
 		remove_inspector_plugin(_inspector_plugin)
+	#remove_autoload_singleton('BFCHelpers')
 
 func apply_changes() -> void:
 	if is_instance_valid(_dialog) and (_dialog as Control).is_visible_in_tree():
