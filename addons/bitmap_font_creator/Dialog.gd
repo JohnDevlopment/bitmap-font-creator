@@ -17,7 +17,7 @@ func _init_font(font: Object):
 	set_meta_default(font, 'hframes', {})
 
 func apply() -> void:
-	_debug_print("Apply changes to '%s'" % edited_font_path)
+	BFCHelpers.debug_print("Apply changes to '%s'" % edited_font_path)
 	save()
 
 func clear_state() -> void:
@@ -44,7 +44,7 @@ func save() -> void:
 		$'Tabs/Character Mappings'.save(edited_font)
 		$Tabs/Properties.save(edited_font)
 		if not edited_font_path.empty():
-			_debug_print("Saving '%s'" % edited_font_path)
+			BFCHelpers.debug_print("Saving '%s'" % edited_font_path)
 			ResourceSaver.save(edited_font_path, edited_font)
 
 func set_meta_default(object: Object, meta: String, value) -> void:
@@ -60,10 +60,6 @@ func _on_Textures_texture_count_changed(new_count: int) -> void:
 
 func _on_Character_Mappings_mapping_added(node: Node) -> void:
 	node.call('set_texture_count', texture_count)
-
-func _debug_print(text: String) -> void:
-	if ProjectSettings.get_setting(DebugSetting):
-		print(text)
 
 func _on_Character_Mappings_launch_wizard() -> void:
 	emit_signal('launch_charmap_wizard', edited_font, edited_font_path, texture_count)

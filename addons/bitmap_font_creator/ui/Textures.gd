@@ -22,7 +22,6 @@ func _add_texture(tex):
 	TexturesGrid.add_child(node)
 	node.connect('property_changed', self, '_on_texture_property_changed')
 	node.connect('tree_exiting', self, '_on_texture_removed', [], CONNECT_ONESHOT)
-	node.connect('debug_print', self, '_debug_print')
 	
 	_no_update = true
 	set_deferred('_no_update', false)
@@ -70,9 +69,6 @@ func _on_texture_removed() -> void:
 	if not _no_update:
 		call_deferred('_update_texture_ids')
 		call_deferred('emit_texture_count_changed')
-
-func _debug_print(text: String) -> void:
-	emit_signal('debug_print', text)
 
 func edit(font: BitmapFont, _undo_redo: UndoRedo) -> void:
 	edited_font = font

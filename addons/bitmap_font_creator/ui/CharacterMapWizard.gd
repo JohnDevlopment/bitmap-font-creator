@@ -86,15 +86,15 @@ func _insert_characters() -> void:
 				end_cell.x = 0
 				end_cell.y += 1
 			cells.push_back(end_cell)
-			_debug_print("Cell %s: %s" % [end_cell, char(ord(start) + i)])
+			BFCHelpers.debug_print("Cell %s: %s" % [end_cell, char(ord(start) + i)])
 			end_cell.x += 1
-		_debug_print("%s %s to %s %s, cell size: %s"
-			% [start, start_cell, end, end_cell, _get_cell_size(edited_font, texid)])
+		BFCHelpers.debug_print("%s %s to %s %s, cell size: %s"
+			% [start, start_cell, end, end_cell, BFCHelpers.get_cell_size(edited_font, texid)])
 	
 	# add characters to font
 	if true:
-		var cell_size := _get_cell_size(edited_font, texid)
-		var char_mappings := {}
+		var cell_size : Vector2 = BFCHelpers.get_cell_size(edited_font, texid)
+		var char_mappings : Dictionary = edited_font.get_meta('char_mappings')
 		for i in cells.size():
 			var ch : int = ord(start) + i
 			(edited_font as BitmapFont).add_char(ch, texid,
@@ -106,16 +106,6 @@ func _insert_characters() -> void:
 		(edited_font as BitmapFont).set_meta('char_mappings', char_mappings)
 
 	ResourceSaver.save(edited_font_path, edited_font)
-	_debug_print("Saved %s to '%s'" % [edited_font, edited_font_path])
+	BFCHelpers.debug_print("Saved %s to '%s'" % [edited_font, edited_font_path])
 	
 	queue_free()
-
-func _get_cell_size(font: BitmapFont, texture: int) -> Vector2:
-	var vframes = font.get_meta('vframes')[texture]
-	var hframes = font.get_meta('hframes')[texture]
-	var tex_size : Vector2 = font.get_texture(texture).get_size()
-	return tex_size / Vector2(hframes, vframes)
-
-func _debug_print(text: String) -> void:
-	if ProjectSettings.get_setting('BitmapFontPlugin/debug/print_messages'):
-		print(text)
