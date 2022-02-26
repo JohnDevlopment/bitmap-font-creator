@@ -5,20 +5,56 @@
 [resource]
 resource_name = "example font"
 textures = [ ExtResource( 1 ) ]
-chars = PoolIntArray( 65, 0, 9, 32, 9, 16, 0, 0, 9 )
+chars = PoolIntArray( 56, 0, 0, 16, 9, 16, 0, 0, 9, 48, 0, 0, 0, 9, 16, 0, 0, 9, 57, 0, 9, 16, 9, 16, 0, 0, 9, 49, 0, 9, 0, 9, 16, 0, 0, 9, 50, 0, 18, 0, 9, 16, 0, 0, 9, 51, 0, 27, 0, 9, 16, 0, 0, 9, 52, 0, 36, 0, 9, 16, 0, 0, 9, 53, 0, 45, 0, 9, 16, 0, 0, 9, 54, 0, 54, 0, 9, 16, 0, 0, 9, 55, 0, 63, 0, 9, 16, 0, 0, 9 )
 height = 16.0
 ascent = 12.0
 __meta__ = {
 "char_mappings": {
-"A": {
-"cell": Vector2( 1, 2 ),
+"0": {
+"cell": Vector2( 0, 0 ),
+"texture": 0
+},
+"1": {
+"cell": Vector2( 1, 0 ),
+"texture": 0
+},
+"2": {
+"cell": Vector2( 2, 0 ),
+"texture": 0
+},
+"3": {
+"cell": Vector2( 3, 0 ),
+"texture": 0
+},
+"4": {
+"cell": Vector2( 4, 0 ),
+"texture": 0
+},
+"5": {
+"cell": Vector2( 5, 0 ),
+"texture": 0
+},
+"6": {
+"cell": Vector2( 6, 0 ),
+"texture": 0
+},
+"7": {
+"cell": Vector2( 7, 0 ),
+"texture": 0
+},
+"8": {
+"cell": Vector2( 0, 1 ),
+"texture": 0
+},
+"9": {
+"cell": Vector2( 1, 1 ),
 "texture": 0
 }
 },
 "hframes": {
-0: 8
+0: 8.0
 },
 "vframes": {
-0: 4
+0: 4.0
 }
 }
