@@ -6,17 +6,23 @@ const DebugSetting := 'BitmapFontPlugin/debug/print_messages'
 
 var _dialog : Control
 var _show_button
+var _inspector_plugin
 
 func _enter_tree() -> void:
 	if not ProjectSettings.has_setting(DebugSetting):
 		ProjectSettings.set_setting(DebugSetting, false)
 		ProjectSettings.set_initial_value(DebugSetting, false)
 		ProjectSettings.save()
+	# Add dialog to bottom window
 	_dialog = Window.instance()
+	_dialog.inspector = get_editor_interface().get_inspector()
 	_dialog.undo_redo = get_undo_redo()
-	_dialog.init()
 	_show_button = add_control_to_bottom_panel(_dialog, 'Bitmap Font')
 	_show_button.hide()
+	_dialog.init()
+	# Inspector plugin
+	_inspector_plugin = preload('res://addons/bitmap_font_creator/inspector_plugin.gd').new()
+	add_inspector_plugin(_inspector_plugin)
 
 func _exit_tree() -> void:
 	if is_instance_valid(_dialog):
@@ -24,6 +30,8 @@ func _exit_tree() -> void:
 		_dialog.queue_free()
 		_dialog = null
 		_show_button = null
+	if _inspector_plugin:
+		remove_inspector_plugin(_inspector_plugin)
 
 func apply_changes() -> void:
 	if is_instance_valid(_dialog) and (_dialog as Control).is_visible_in_tree():

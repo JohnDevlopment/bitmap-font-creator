@@ -7,6 +7,7 @@ var edited_font
 var edited_font_path : String
 var texture_count := 0
 var undo_redo : UndoRedo
+var inspector
 
 func _init_font(font: Object):
 	set_meta_default(font, 'char_mappings', {})

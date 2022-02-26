@@ -4,6 +4,7 @@ extends MarginContainer
 var connected_to_dialog := false
 var edited_font
 var undo_redo : UndoRedo
+var editor_inspector : EditorInspector
 onready var Height = get_node('VBoxContainer/Height')
 onready var Ascent = get_node('VBoxContainer/Ascent')
 onready var DistanceField = get_node('VBoxContainer/DistanceField')
