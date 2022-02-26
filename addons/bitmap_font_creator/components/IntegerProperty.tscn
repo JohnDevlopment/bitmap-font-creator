@@ -9,9 +9,6 @@ hint_tooltip = "Property: label
 
 "
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="NameLabel" type="Label" parent="."]
 margin_top = 13.0
@@ -23,6 +20,7 @@ text = "Label"
 margin_left = 38.0
 margin_right = 112.0
 margin_bottom = 40.0
+focus_mode = 2
 max_value = 1.0
 
 [connection signal="value_changed" from="IntegerValue" to="." method="_on_IntegerValue_value_changed"]

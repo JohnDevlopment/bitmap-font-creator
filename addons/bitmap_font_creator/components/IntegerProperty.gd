@@ -33,6 +33,7 @@ func set_value(_value: int) -> void:
 func _on_IntegerValue_value_changed(_value: float) -> void:
 	var old_value := value
 	value = int(_value)
+	$IntegerValue.release_focus()
 	emit_signal('value_changed', old_value, value)
 
 func _update_controls():
