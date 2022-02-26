@@ -1,5 +1,5 @@
 tool
-extends HBoxContainer
+extends Container
 
 signal value_changed(old_value, value)
 

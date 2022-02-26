@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://addons/bitmap_font_creator/trash-icon.png" type="Texture" id=1]
 [ext_resource path="res://addons/bitmap_font_creator/components/CharMapping.gd" type="Script" id=2]
 [ext_resource path="res://addons/bitmap_font_creator/components/Vector2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://addons/bitmap_font_creator/components/StringProperty.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/bitmap_font_creator/components/IntegerProperty.tscn" type="PackedScene" id=5]
 
 [node name="CharMapping" type="VBoxContainer"]
 anchor_right = 1.0
@@ -14,71 +16,41 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_right = 1024.0
 margin_bottom = 70.0
-custom_constants/hseparation = 15
-columns = 4
 
-[node name="CharLabel" type="Label" parent="GridContainer"]
-margin_right = 60.0
-margin_bottom = 14.0
-text = "Character"
-
-[node name="CellLabel" type="Label" parent="GridContainer"]
-margin_left = 75.0
-margin_right = 149.0
-margin_bottom = 14.0
-text = "Cell"
-
-[node name="TextureLabel" type="Label" parent="GridContainer"]
-margin_left = 164.0
-margin_right = 238.0
-margin_bottom = 14.0
-text = "Texture"
-
-[node name="Spacer" type="Control" parent="GridContainer"]
-margin_left = 253.0
-margin_right = 281.0
-margin_bottom = 14.0
-
-[node name="Character" type="LineEdit" parent="GridContainer"]
-margin_top = 18.0
-margin_right = 60.0
-margin_bottom = 42.0
-size_flags_vertical = 0
-max_length = 1
-context_menu_enabled = false
-shortcut_keys_enabled = false
-selecting_enabled = false
-placeholder_text = "A"
-caret_blink = true
-caret_blink_speed = 0.5
-
-[node name="Cell" parent="GridContainer" instance=ExtResource( 3 )]
+[node name="Character" parent="HBoxContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 75.0
-margin_top = 18.0
-margin_right = 149.0
+margin_right = 60.0
 margin_bottom = 70.0
+max_length = 1
+label = "Character"
+value = "A"
 
-[node name="TextureID" type="SpinBox" parent="GridContainer"]
-margin_left = 164.0
-margin_top = 18.0
-margin_right = 238.0
-margin_bottom = 42.0
-size_flags_vertical = 0
+[node name="Cell" parent="HBoxContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 64.0
+margin_right = 138.0
+margin_bottom = 70.0
+label = "Cell"
 
-[node name="TrashButton" type="Button" parent="GridContainer"]
-margin_left = 253.0
-margin_top = 18.0
-margin_right = 281.0
-margin_bottom = 40.0
+[node name="TextureID" parent="HBoxContainer" instance=ExtResource( 5 )]
+margin_left = 142.0
+margin_right = 216.0
+margin_bottom = 70.0
+label = "Texture"
+
+[node name="TrashButton" type="Button" parent="HBoxContainer"]
+margin_left = 220.0
+margin_right = 248.0
+margin_bottom = 22.0
 size_flags_vertical = 0
 icon = ExtResource( 1 )
 
-[connection signal="text_changed" from="GridContainer/Character" to="." method="_on_Character_text_changed"]
-[connection signal="value_changed" from="GridContainer/Cell" to="." method="_on_Cell_value_changed"]
-[connection signal="value_changed" from="GridContainer/TextureID" to="." method="_on_Texture_value_changed"]
-[connection signal="pressed" from="GridContainer/TrashButton" to="." method="_on_TrashButton_pressed"]
+[connection signal="value_changed" from="HBoxContainer/Character" to="." method="_on_Character_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/Cell" to="." method="_on_Cell_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/TextureID" to="." method="_on_TextureID_value_changed"]
+[connection signal="pressed" from="HBoxContainer/TrashButton" to="." method="_on_TrashButton_pressed"]

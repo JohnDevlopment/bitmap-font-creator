@@ -5,7 +5,7 @@ signal value_changed(old_value, new_value)
 
 export var max_length := 0 setget set_max_length
 export var label := '' setget set_label
-export var value := ''
+export var value := '' setget set_value
 
 onready var entry_bar = $LineEdit
 
