@@ -4,15 +4,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1]
+### Added
+* "Properties" tab
+* Undo/redo functionality in the "Properties" tab
+* String property control
+* New dialog for inserting a range of characters easily into the font
+* `BFCHelpers` singleton for implementing common and useful functions
+* Example `BitmapFont` for the user to look at
+
+### Changed
+
+* Made character map grid 3 columns instead of 2
+* Inspector no longer displays properties under `BitmapFont`
+* Added label to Vector2 property control
+
 ## [1.0]
-## Added
+### Added
 
 * Debug messages (enable with "Bitmap Font Plugin/Print Messages" under the project settings)
 * Icon for the plugin (in plugin folder)
 * Grid drawn on texture when the vframes and hframes are changed
 * Textures are labeled with their ID so you don't have to guess
 
-## Fixed
+### Fixed
 
 * Fixed texture count not updating when a texture was deleted
 
@@ -30,6 +45,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * The ability to divide textures into cells and to specify which cell you want to map to which character
 * Use multiple textures for one font
 
-[Unreleased]: https://github.com/JohnDevlopment/bitmap-font-creator/compare/v0.2...HEAD
+[Unreleased]: https://github.com/JohnDevlopment/bitmap-font-creator/compare/v1.1...HEAD
+[1.1]: https://github.com/JohnDevlopment/bitmap-font-creator/compare/v1.0...v1.1
 [1.0]: https://github.com/JohnDevlopment/bitmap-font-creator/compare/v0.2...v1.0
 [0.2]: https://github.com/JohnDevlopment/bitmap-font-creator/compare/v0.1...v0.2
