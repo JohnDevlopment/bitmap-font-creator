@@ -15,7 +15,5 @@
 /snippets                       export-ignore
 
 # Ignore other plugins
-/addons/godot-plugin-refresher  export-ignore
-/addons/node_mapper             export-ignore
-/addons/Todo_Manager            export-ignore
-/addons/snippets_plugin         export-ignore
+/addons/*                       export-ignore
+/addons/bitmap_font_creator     -export-ignore
