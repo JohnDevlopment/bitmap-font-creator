@@ -4,15 +4,12 @@
 # Ignore some files when exporting to a ZIP.
 /.gitattributes                 export-ignore
 /.gitignore                     export-ignore
-/.import                        export-ignore
-/temp                           export-ignore
 /LICENSE                        export-ignore
-/README.md                      export-ignore
 /project.godot                  export-ignore
-/icon.png                       export-ignore
 /Main.gd                        export-ignore
 /Main.tscn                      export-ignore
-/snippets                       export-ignore
+/*.png*                         export-ignore
+/*.tres                         export-ignore
 
 # Ignore other plugins
 /addons/*                       export-ignore
