@@ -6,6 +6,8 @@ To use this plugin, simply copy the `bitmap_font_creator` folder to your own God
 
 The first time you enable the plugin, a new setting is added to your project settings. That setting is under "Bitmap Font Plugin".
 
+**Note:** The first time you enable the plugin, you may get errors saying that `BFCHelpers` is not defined in scope. If that happens, just disable and reenable the plugin; that will fix all the errors.
+
 ## Version 1.1
 
 See the [curated changelog](CHANGELOG.md) to see how this version is different from version 1.0.
