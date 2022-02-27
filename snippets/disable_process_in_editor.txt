@@ -1,4 +1,0 @@
-if Engine.editor_hint:
-		set_physics_process(false)
-		set_process(false)
-		return

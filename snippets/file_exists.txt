@@ -1,3 +1,0 @@
-func file_exists(path: String) -> bool:
-	var dir := Directory.new()
-	return dir.file_exists(path)

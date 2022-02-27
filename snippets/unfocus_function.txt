@@ -1,3 +1,0 @@
-func unfocus():
-	if has_focus():
-		release_focus()

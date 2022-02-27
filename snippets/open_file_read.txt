@@ -1,5 +1,0 @@
-var file := File.new()
-var err := file.open(path, File.READ)
-if err:
-	push_error("Failed to open '%s'." % path)
-	return err

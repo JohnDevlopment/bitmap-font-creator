@@ -1,6 +1,0 @@
-{
-			name = 'NAME',
-			type = TYPE_NIL,
-			usage = PROPERTY_USAGE_GROUP | PROPERTY_USAGE_SCRIPT_VARIABLE,
-			hint_string = 'NAME_'
-		}
